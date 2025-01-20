@@ -8,7 +8,7 @@ public class Main {
         ArrayList<String> tasks = new ArrayList<>();
         while (true) {
             System.out.println
-                    ("\n----- Task List -----\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n0. Exit");
+                    ("\n━━━━━ Task List ━━━━━\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n0. Exit");
 
             System.out.print("Choose an action (0 - 4): ");
             byte x = scanner.nextByte();
