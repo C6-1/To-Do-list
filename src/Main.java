@@ -30,10 +30,28 @@ public class Main {
                         for (int i = 0; i < tasks.size(); i++) {
                             System.out.println(i + 1 + ") " + tasks.get(i));
                         }
-                        System.out.print("\nEnter the name of the task you want to remove: ");
-                        String taskDelete = scanner.nextLine();
-                        tasks.remove(taskDelete);
-                        System.out.println("Task \"" + taskDelete+ "\" has been removed!");
+
+                        System.out.print("If you want to delete a task based on its name, enter 1, if you want to delete a task based on its ID number, enter 0: ");
+                        int nameOrId = scanner.nextInt();
+                        scanner.nextLine();
+                        if(nameOrId == 1)
+                        {
+                            System.out.print("Task name: ");
+                            String taskDelete = scanner.nextLine();
+                            System.out.println("\nTask \"" + taskDelete+ "\" has been removed!");
+                            tasks.remove(taskDelete);
+                            break;
+                        }
+                        else if (nameOrId == 0)
+                        {
+                            System.out.print("Task ID: ");
+                            int deleteId = scanner.nextInt();
+                            String taskNameDelete = tasks.get(deleteId-1);
+                            tasks.remove(deleteId-1);
+                            System.out.println("Task \"" + deleteId + " - " + taskNameDelete +   "\" has been removed!");
+                            break;
+                        }
+
                     }
                     break;
 
