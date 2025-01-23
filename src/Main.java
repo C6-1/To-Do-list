@@ -2,10 +2,13 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
+    //text colours:
     public static final String reset = "\u001B[0m";
     public static final String red = "\u001B[31m";
     public static final String green = "\u001B[32m";
     public static final String yellow = "\u001B[33m";
+    public static final String blue = "\u001B[34m";
+    public static final String purple = "\u001B[35m";
 
 
     public static void main(String[] args) {
@@ -14,9 +17,9 @@ public class Main {
         ArrayList<String> tasks = new ArrayList<>();
         while (true) {
             System.out.println
-                    ("\n━━━━━ Task List ━━━━━\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n5. Change existing task\n0. Exit");
+                    (yellow + "\n━━━━━ Task List ━━━━━\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n5. Change existing task\n6. Change task status\n0. Exit" + reset);
 
-            System.out.print("Choose an action (0 - 5): ");
+            System.out.print(yellow + "Choose an action (0 - 6): " + reset);
             byte x = scanner.nextByte();
             scanner.nextLine();
             switch(x){
@@ -24,7 +27,7 @@ public class Main {
                     while(true){
                     System.out.print(yellow + "\nEnter the task you want to add: " + reset);
                     String task = scanner.nextLine();
-                    tasks.add(task);
+                    tasks.add( task );
                     System.out.println(green + "Task \""+ task +"\" has been added!" + reset);
                     System.out.println(yellow + "Do you want to add a new tasks? (y/n)" + reset);
                     String taskAdd = scanner.nextLine();
@@ -55,7 +58,7 @@ public class Main {
                         {
                             System.out.print(yellow + "Task name: " + reset);
                             String taskDelete = scanner.nextLine();
-                            System.out.println(red + "\nTask \"" + taskDelete+ "\" has been removed!" + reset);
+                            System.out.println(red + "\nTask \" " + taskDelete+ "\" has been removed!" + reset);
                             tasks.remove(taskDelete);
                             break;
                         }
@@ -65,7 +68,7 @@ public class Main {
                             int deleteId = scanner.nextInt();
                             String taskNameDelete = tasks.get(deleteId-1);
                             tasks.remove(deleteId-1);
-                            System.out.println(red + "Task \"" + deleteId + " - " + taskNameDelete +   "\" has been removed!" + reset);
+                            System.out.println(red + "Task \" " + deleteId + " - " + taskNameDelete +   " \" has been removed!" + reset);
                             break;
                         }
 
@@ -119,6 +122,41 @@ public class Main {
                     System.out.println(yellow + "Changed !\nTask "+ reset  + red + beforeDelete + reset + yellow + " now "+ reset + green + changedTask + yellow +"." + reset);
                     break;
 
+                case 6:
+                    if(tasks.isEmpty()){
+                        System.out.println(yellow + "\nThere are no tasks :( " + reset);
+                        break;
+                    }else{
+                        System.out.println(yellow + "\nAll your tasks: " + reset);
+                        for (int i = 0; i < tasks.size(); i++) {
+                            System.out.println(i + 1 + ") " + tasks.get(i));
+                        }
+                    }
+                    System.out.print(yellow + "Task id: " + reset);
+                    int taskIdStatus = scanner.nextInt();
+                    scanner.nextLine();
+                    String statusBefore = tasks.get(taskIdStatus - 1);
+                    System.out.println(yellow + "\nd - Done\ni - in progress\nl - to do later" + reset);
+                    System.out.print("Change status to: ");
+                    char status = scanner.next().charAt(0);
+                    if(status == 'd')
+                    {
+                        tasks.remove(taskIdStatus - 1);
+                        tasks.add(taskIdStatus - 1, green + statusBefore + reset);
+                        System.out.println(green + "Task status was changed !" + reset);
+                        break;
+                    } else if (status == 'i') {
+                        tasks.remove(taskIdStatus - 1);
+                        tasks.add(taskIdStatus - 1, blue + statusBefore + reset);
+                        System.out.println(green + "Task status was changed !" + reset);
+                        break;
+                    } else if (status == 'l') {
+                        tasks.remove(taskIdStatus - 1);
+                        tasks.add(taskIdStatus - 1, purple + statusBefore + reset);
+                        System.out.println(green + "Task status was changed !" + reset);
+                        break;
+                    }
+
                 case 0:
                     System.out.println(green + "\nGoodbye!" + reset);
                     return;
@@ -128,3 +166,4 @@ public class Main {
         }
     }
 }
+
