@@ -11,3 +11,5 @@ This Java program is a console-based task management application that allows use
 4. "Remove all tasks" – User can remove all tasks at once, and the program will confirm the deletion. If the task list is already empty, it notifies the user.
 
 5. "Change existing task" - User can changed an existing task by its ID. After making changes, the updated task details are displayed.
+
+6. "Change task status" - User can change the status of a task, and the task will change color depending on its status ( done ( green ), in progress ( blue ), to do later ( purple ) ).
