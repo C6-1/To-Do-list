@@ -138,19 +138,19 @@ public class Main {
                     String statusBefore = tasks.get(taskIdStatus - 1);
                     System.out.println(yellow + "\nd - Done\ni - in progress\nl - to do later" + reset);
                     System.out.print("Change status to: ");
-                    char status = scanner.next().charAt(0);
-                    if(status == 'd')
+                    String status = scanner.nextLine();
+                    if(status.equalsIgnoreCase("d"))
                     {
                         tasks.remove(taskIdStatus - 1);
                         tasks.add(taskIdStatus - 1, green + statusBefore + reset);
                         System.out.println(green + "Task status was changed !" + reset);
                         break;
-                    } else if (status == 'i') {
+                    } else if ((status.equalsIgnoreCase("i"))) {
                         tasks.remove(taskIdStatus - 1);
                         tasks.add(taskIdStatus - 1, blue + statusBefore + reset);
                         System.out.println(green + "Task status was changed !" + reset);
                         break;
-                    } else if (status == 'l') {
+                    } else if ((status.equalsIgnoreCase("l"))) {
                         tasks.remove(taskIdStatus - 1);
                         tasks.add(taskIdStatus - 1, purple + statusBefore + reset);
                         System.out.println(green + "Task status was changed !" + reset);
