@@ -20,10 +20,9 @@ public class Main {
                     (yellow + "\n━━━━━ Task List ━━━━━\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n5. Change existing task\n6. Change task status\n0. Exit" + reset);
 
             System.out.print(yellow + "Choose an action (0 - 6): " + reset);
-            byte x = scanner.nextByte();
-            scanner.nextLine();
+            String x = scanner.nextLine();
             switch(x){
-                case 1:
+                case "1":
                     while(true){
                     System.out.print(yellow + "\nEnter the task you want to add: " + reset);
                     String task = scanner.nextLine();
@@ -41,7 +40,7 @@ public class Main {
                     break;
 
 
-                case 2:
+                case "2":
                     if(tasks.isEmpty()){
                         System.out.println(yellow + "\nThere are no tasks :( " + reset);
 
@@ -75,7 +74,7 @@ public class Main {
                     }
                     break;
 
-                case 3:
+                case "3":
                     if(tasks.isEmpty()){
                         System.out.println(yellow + "\nThere are no tasks :( " + reset);
 
@@ -88,7 +87,7 @@ public class Main {
 
                     break;
 
-                case 4:
+                case "4":
                     if(tasks.isEmpty()){
                         System.out.println(yellow + "\nThere are no tasks :( " + reset);
 
@@ -100,7 +99,7 @@ public class Main {
                     }
 
                     break;
-                case 5:
+                case "5":
                     if(tasks.isEmpty()){
                         System.out.println(yellow + "\nThere are no tasks :( " + reset);
                         break;
@@ -122,7 +121,7 @@ public class Main {
                     System.out.println(yellow + "Changed !\nTask "+ reset  + red + beforeDelete + reset + yellow + " now "+ reset + green + changedTask + yellow +"." + reset);
                     break;
 
-                case 6:
+                case "6":
                     if(tasks.isEmpty()){
                         System.out.println(yellow + "\nThere are no tasks :( " + reset);
                         break;
@@ -139,29 +138,39 @@ public class Main {
                     System.out.println(yellow + "\nd - Done\ni - in progress\nl - to do later" + reset);
                     System.out.print("Change status to: ");
                     String status = scanner.nextLine();
+
                     if(status.equalsIgnoreCase("d"))
                     {
                         tasks.remove(taskIdStatus - 1);
                         tasks.add(taskIdStatus - 1, green + statusBefore + reset);
                         System.out.println(green + "Task status was changed !" + reset);
                         break;
+
                     } else if ((status.equalsIgnoreCase("i"))) {
                         tasks.remove(taskIdStatus - 1);
                         tasks.add(taskIdStatus - 1, blue + statusBefore + reset);
                         System.out.println(green + "Task status was changed !" + reset);
                         break;
+
                     } else if ((status.equalsIgnoreCase("l"))) {
                         tasks.remove(taskIdStatus - 1);
                         tasks.add(taskIdStatus - 1, purple + statusBefore + reset);
                         System.out.println(green + "Task status was changed !" + reset);
                         break;
+
+                    }
+                    else
+                    {
+                        System.out.println(red + "Invalid choice !" + reset);
+                        break;
+
                     }
 
-                case 0:
+                case "0":
                     System.out.println(green + "\nGoodbye!" + reset);
                     return;
                 default:
-                    System.out.println(red + "\nInvalid choice!!!" + reset);
+                    System.out.println(red + "\nInvalid choice !" + reset);
             }
         }
     }
