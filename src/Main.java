@@ -15,11 +15,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> tasks = new ArrayList<>();
-        while (true) {
-            System.out.println
-                    (yellow + "\n━━━━━ Task List ━━━━━\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n5. Change existing task\n6. Change task status\n0. Exit" + reset);
+        System.out.println
 
-            System.out.print(yellow + "Choose an action (0 - 6): " + reset);
+        (yellow + "\n━━━━━ Task List ━━━━━\n1. Add a new task\n2. Remove a task\n3. Show all tasks\n4. Remove all tasks\n5. Change existing task\n6. Change task status\n0. Exit" + reset);
+
+        while (true) {
+            System.out.print(yellow + ": " + reset);
             String x = scanner.nextLine();
             switch(x){
                 case "1":
