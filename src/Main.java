@@ -11,7 +11,18 @@ public class Main {
     public static final String PURPLE = "\u001B[35m";
 
 
+    public static void showAllTasks( ArrayList<String> data)
+    {
+        System.out.println(YELLOW + "\nAll your tasks: " + RESET);
+        for (int i = 0; i < data.size(); i++) {
+            System.out.println(i + 1 + ") " + data.get(i));
+        }
+    }
+
+
     public static void main(String[] args) {
+
+
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> tasks = new ArrayList<>();
@@ -48,11 +59,7 @@ public class Main {
                         System.out.println(YELLOW + "\nThere are no tasks :( " + RESET);
                         break;
                     } else {
-                        System.out.println(YELLOW + "\nAll your tasks: " + RESET);
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.println(i + 1 + ") " + tasks.get(i));
-
-                        }
+                        showAllTasks(tasks);
 
                         System.out.print(YELLOW + "If you want to delete a task based on its name, enter 1," +
                                 " if you want to delete a task based on its ID number, enter 0: " + RESET);
@@ -86,10 +93,7 @@ public class Main {
                         System.out.println(YELLOW + "\nThere are no tasks :( " + RESET);
 
                     } else {
-                        System.out.println(YELLOW + "\nAll your tasks: " + RESET);
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.println(i + 1 + ") " + tasks.get(i));
-                        }
+                        showAllTasks(tasks);
                     }
                     break;
 
@@ -108,10 +112,7 @@ public class Main {
                         System.out.println(YELLOW + "\nThere are no tasks :( " + RESET);
                         break;
                     } else {
-                        System.out.println(YELLOW + "\nAll your tasks: " + RESET);
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.println(i + 1 + ") " + tasks.get(i));
-                        }
+                        showAllTasks(tasks);
                     }
 
                     System.out.print(YELLOW + "If you want to change a task write its id: " + RESET);
@@ -135,10 +136,7 @@ public class Main {
                         break;
                         
                     } else {
-                        System.out.println(YELLOW + "\nAll your tasks: " + RESET);
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.println(i + 1 + ") " + tasks.get(i));
-                        }
+                        showAllTasks(tasks);
                         
                         System.out.print(YELLOW + "Task id: " + RESET);
                         int taskIdStatus = scanner.nextInt();
@@ -224,5 +222,7 @@ public class Main {
                     System.out.println(RED + "\nInvalid choice !" + RESET);
             }
         }
+
+
     }
 }
