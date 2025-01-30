@@ -22,8 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> tasks = new ArrayList<>();
         System.out.println
@@ -137,82 +135,89 @@ public class Main {
                         
                     } else {
                         showAllTasks(tasks);
-                        
-                        System.out.print(YELLOW + "Task id: " + RESET);
-                        int taskIdStatus = scanner.nextInt();
-                        
-                        String statusBefore = tasks.get(taskIdStatus - 1);
-                        scanner.nextLine();
-                        
-                        if (taskIdStatus - 1 > tasks.size()) {
+
+                            System.out.print(YELLOW + "Task id: " + RESET);
+                            String taskIdStatus = scanner.nextLine();
+                        if (!taskIdStatus.matches("\\d+")) {
                             System.out.println(RED + "Invalid choice !" + RESET);
                             break;
                         }
 
-                        System.out.println(YELLOW + "\nd - Done\ni - in progress\nl - to do later" + RESET);
-                        System.out.print("Change status to: ");
-                        String status = scanner.nextLine();
+                            String statusBefore = tasks.get(Integer.parseInt(taskIdStatus) - 1);
+                            scanner.nextLine();
 
-                        if (status.equalsIgnoreCase("d")) {
-                            if (tasks.get(taskIdStatus - 1).contains(" - in progress.")) {
-                                tasks.set(taskIdStatus - 1, tasks.get(taskIdStatus - 1).replace(" - in progress.", GREEN + " - done !" + RESET));
-                                System.out.println(GREEN + "Task status was changed !" + RESET);
-                                break;
-                            }
-                            if (tasks.get(taskIdStatus - 1).contains(" - to do later !!")) {
-                                tasks.set(taskIdStatus - 1, tasks.get(taskIdStatus - 1).replace(" - to do later !!", GREEN + " - done !" + GREEN));
-                                System.out.println(GREEN + "Task status was changed !" + RESET);
+                            if (Integer.parseInt(taskIdStatus) - 1 > tasks.size()) {
+                                System.out.println(RED + "Invalid choice !" + RESET);
                                 break;
                             }
 
-                            tasks.remove(taskIdStatus - 1);
+                            System.out.println(YELLOW + "\nd - Done\ni - in progress\nl - to do later" + RESET);
+                            System.out.print("Change status to: ");
+                            String status = scanner.nextLine();
 
-                            tasks.add(taskIdStatus - 1, statusBefore + GREEN + " - done !" + RESET);
-                            System.out.println(GREEN + "Task status was changed !" + RESET);
-                            break;
+                            if (status.equalsIgnoreCase("d")) {
+                                if (tasks.get(Integer.parseInt(taskIdStatus) - 1).contains(" - in progress.")) {
+                                    tasks.set(Integer.parseInt(taskIdStatus) - 1, tasks.get(Integer.parseInt(taskIdStatus) - 1).replace(" - in progress.", GREEN + " - done !" + RESET));
+                                    System.out.println(GREEN + "Task status was changed !" + RESET);
+                                    break;
+                                }
+                                if (tasks.get(Integer.parseInt(taskIdStatus) - 1).contains(" - to do later !!")) {
+                                    tasks.set(Integer.parseInt(taskIdStatus) - 1, tasks.get(Integer.parseInt(taskIdStatus) - 1).replace(" - to do later !!", GREEN + " - done !" + GREEN));
+                                    System.out.println(GREEN + "Task status was changed !" + RESET);
+                                    break;
+                                }
 
+                                tasks.remove(Integer.parseInt(taskIdStatus) - 1);
 
-                        } else if ((status.equalsIgnoreCase("i"))) {
-                            if (tasks.get(taskIdStatus - 1).contains(" - done !")) {
-                                tasks.set(taskIdStatus - 1, tasks.get(taskIdStatus - 1).replace(" - done !", BLUE + " - in progress." + RESET));
+                                tasks.add(Integer.parseInt(taskIdStatus) - 1, statusBefore + GREEN + " - done !" + RESET);
                                 System.out.println(GREEN + "Task status was changed !" + RESET);
                                 break;
-                            }
-                            if (tasks.get(taskIdStatus - 1).contains(" - to do later !!")) {
-                                tasks.set(taskIdStatus - 1, tasks.get(taskIdStatus - 1).replace(" - to do later !!", BLUE + " - in progress." + GREEN));
+
+
+                            } else if ((status.equalsIgnoreCase("i"))) {
+                                if (tasks.get(Integer.parseInt(taskIdStatus) - 1).contains(" - done !")) {
+                                    tasks.set(Integer.parseInt(taskIdStatus) - 1, tasks.get(Integer.parseInt(taskIdStatus) - 1).replace(" - done !", BLUE + " - in progress." + RESET));
+                                    System.out.println(GREEN + "Task status was changed !" + RESET);
+                                    break;
+                                }
+                                if (tasks.get(Integer.parseInt(taskIdStatus) - 1).contains(" - to do later !!")) {
+                                    tasks.set(Integer.parseInt(taskIdStatus) - 1, tasks.get(Integer.parseInt(taskIdStatus) - 1).replace(" - to do later !!", BLUE + " - in progress." + GREEN));
+                                    System.out.println(GREEN + "Task status was changed !" + RESET);
+                                    break;
+                                }
+
+
+                                tasks.remove(Integer.parseInt(taskIdStatus) - 1);
+                                tasks.add(Integer.parseInt(taskIdStatus) - 1, statusBefore + BLUE + " - in progress." + RESET);
                                 System.out.println(GREEN + "Task status was changed !" + RESET);
+                                break;
+
+                            } else if ((status.equalsIgnoreCase("l"))) {
+
+                                if (tasks.get(Integer.parseInt(taskIdStatus) - 1).contains(" - done !")) {
+                                    tasks.set(Integer.parseInt(taskIdStatus) - 1, tasks.get(Integer.parseInt(taskIdStatus) - 1).replace(" - done !", PURPLE + " - to do later !!" + RESET));
+                                    System.out.println(GREEN + "Task status was changed !" + RESET);
+                                    break;
+                                }
+
+                                if (tasks.get(Integer.parseInt(taskIdStatus) - 1).contains(" - in progress.")) {
+                                    tasks.set(Integer.parseInt(taskIdStatus) - 1, tasks.get(Integer.parseInt(taskIdStatus) - 1).replace(" - in progress.", PURPLE + " - to do later !!" + GREEN));
+                                    System.out.println(GREEN + "Task status was changed !" + RESET);
+                                    break;
+                                }
+
+                                tasks.remove(Integer.parseInt(taskIdStatus) - 1);
+                                tasks.add(Integer.parseInt(taskIdStatus)- 1, statusBefore + PURPLE + " - to do later !!" + RESET);
+                                System.out.println(GREEN + "Task status was changed !" + RESET);
+                                break;
+
+                            } else {
+                                System.out.println(RED + "Invalid choice !" + RESET);
                                 break;
                             }
 
 
-                            tasks.remove(taskIdStatus - 1);
-                            tasks.add(taskIdStatus - 1, statusBefore + BLUE + " - in progress." + RESET);
-                            System.out.println(GREEN + "Task status was changed !" + RESET);
-                            break;
 
-                        } else if ((status.equalsIgnoreCase("l"))) {
-                            
-                            if (tasks.get(taskIdStatus - 1).contains(" - done !")) {
-                                tasks.set(taskIdStatus - 1, tasks.get(taskIdStatus - 1).replace(" - done !", PURPLE + " - to do later !!" + RESET));
-                                System.out.println(GREEN + "Task status was changed !" + RESET);
-                                break;
-                            }
-                            
-                            if (tasks.get(taskIdStatus - 1).contains(" - in progress.")) {
-                                tasks.set(taskIdStatus - 1, tasks.get(taskIdStatus - 1).replace(" - in progress.", PURPLE + " - to do later !!" + GREEN));
-                                System.out.println(GREEN + "Task status was changed !" + RESET);
-                                break;
-                            }
-
-                            tasks.remove(taskIdStatus - 1);
-                            tasks.add(taskIdStatus - 1, statusBefore + PURPLE + " - to do later !!" + RESET);
-                            System.out.println(GREEN + "Task status was changed !" + RESET);
-                            break;
-
-                        } else {
-                            System.out.println(RED + "Invalid choice !" + RESET);
-                            break;
-                        }
                     }
 
                 case "0":
