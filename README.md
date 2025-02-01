@@ -1,5 +1,7 @@
 This Java program is a console-based task management application that allows users to manage a list of tasks through a menu-driven interface. The program provides the following functionalities:
 
+lc - show the list of commands.
+
 0. "Exit" – By selecting this option, the user can exit the program.
 
 1. "Add a new task" – User can input a new task. A confirmation message is displayed after the task is added.
