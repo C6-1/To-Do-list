@@ -30,8 +30,8 @@ public class Main {
 
         while (true) {
             System.out.print(YELLOW + ": " + RESET);
-            String x = scanner.nextLine();
-            switch (x) {
+            String choice = scanner.nextLine();
+            switch (choice) {
                 case "lc":
                     System.out.println(YELLOW + "\n━━━━━ commands ━━━━━\n" +
                             "lc - show the list of commands\n1. Add a new task\n2. Remove a task\n" +
@@ -116,14 +116,28 @@ public class Main {
                     System.out.print(YELLOW + "If you want to change a task write its id: " + RESET);
                     int taskIdChange = scanner.nextInt();
                     scanner.nextLine();
-                    
+
                     String beforeDelete = tasks.get(taskIdChange - 1);
-                    tasks.remove(taskIdChange - 1);
-                    
+
+
                     System.out.println(GREEN + "New version of this task: " + RESET);
                     String changedTask = scanner.nextLine();
-                    
-                    tasks.add(taskIdChange - 1, changedTask);
+
+                    if(beforeDelete.contains(" - done !"))
+                    {
+                        tasks.set(taskIdChange - 1, changedTask + GREEN + " - done !" + RESET);
+                    }
+                    else if(beforeDelete.contains(" - in progress."))
+                    {
+                        tasks.set(taskIdChange - 1, changedTask + BLUE + " - in progress." + RESET);
+                    }
+                    else if(beforeDelete.contains(" - to do later !!"))
+                    {
+                        tasks.set(taskIdChange - 1, changedTask + PURPLE + " - to do later !!" + RESET);
+                    }
+                    else{
+                        tasks.set(taskIdChange - 1, changedTask );
+                    }
                     System.out.println(YELLOW + "Changed !\nTask " + RESET + RED + beforeDelete + RESET
                             + YELLOW + " now " + RESET + GREEN + changedTask + YELLOW + "." + RESET);
                     break;
@@ -144,7 +158,7 @@ public class Main {
                         }
 
                             String statusBefore = tasks.get(Integer.parseInt(taskIdStatus) - 1);
-                            scanner.nextLine();
+
 
                             if (Integer.parseInt(taskIdStatus) - 1 > tasks.size() ||  Integer.parseInt(taskIdStatus) - 1 < 0) {
                                 System.out.println(RED + "Invalid choice !" + RESET);
